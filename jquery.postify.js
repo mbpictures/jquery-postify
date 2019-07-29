@@ -1,10 +1,16 @@
 (function( $ ) {
  
-    $.fn.showLinkLocation = function(options) {
+    $.fn.postify = function(options) {
 		
-        
 	 
 		var settings = $.extend( {}, defaults, options );
+		
+		//initialize with loading
+		this.each(function () {
+			if(settings.showLoading){
+				$(this).append('<div class="' + settings.loadingClass + '">' + settings.loadingElements + '</div>');
+			}
+		});
 	 
 		return this.each(function() {
 			var elem = $(this);
@@ -49,7 +55,9 @@
 		animation: "fade",
 		easing: "ease",
 		duration: "slow",
-		loadingClass: "postify-loading"
+		showLoading: true,
+		loadingClass: "postify-loading",
+		loadingElements: ""
 	};
  
 }( jQuery ));
