@@ -1,6 +1,6 @@
 (function( $ ) {
  
-    $.fn.postify = function(options) {
+    $.fn.postify = function(url = undefined, options) {
 		
 	 
 		var settings = $.extend( {}, $.fn.postify.defaults, options );
@@ -14,10 +14,14 @@
 	 
 		return this.each(function() {
 			var elem = $(this);
-			var height = $(this).parent().css("height");
-			//elem.css("opacity", "0");
+			var size = {
+				"height": $(this).parent().css("height"),
+				"width": $(this).parent().css("width")
+			};
+			
 			if(elem.data("postify")){
-				var src = elem.data("postify");
+				
+				var src = (url === undefined) ? elem.data("postify") : url;
 				var newImg = $("<img>");
 				newImg.load(function () {
 					
@@ -32,8 +36,22 @@
 						width: "100%"
 					}).hide().delay(settings.delay).appendTo(elem).fadeIn(1000);
 					
-					if(settings.adjustParentSize == "height"){
+					var adjustNewSize = settings.adjustSize;
+					
+					if(settings.adjustSize == "auto"){
+					   adjustNewSize = (parseFloat(newImg.css("height")) > parseFloat(newImg.css("width"))) ? "childHeight" : "childWidth";
+					}
+					
+					if(settings.adjustSize == "parent"){
 						elem.parent().delay(settings.delay).animate({height: newImg.css("height")}, settings.duration);
+					}
+					else if(adjustNewSize == "childHeight"){
+						var width = (parseFloat(size.height) / parseFloat(newImg.css("height"))) * parseFloat(newImg.css("width"));
+						newImg.animate({height: elem.css("height"), width: width + "px"});
+					}
+					else if(adjustNewSize == "childWidth"){
+						var height = (parseFloat(size.width) / parseFloat(newImg.css("width"))) * parseFloat(newImg.css("height"));
+						newImg.animate({height: height, width: elem.css("width")});
 					}
 				});
 				
@@ -68,7 +86,7 @@
 		"showLoading": true,
 		"loadingClass": "postify-loading",
 		"loadingElements": "<div></div><div></div><div></div><div></div>",
-		"adjustParentSize": "height"
+		"adjustSize": "parent"
 	};
  
 }( jQuery ));
