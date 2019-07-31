@@ -125,6 +125,9 @@
 		"slideDown": [{top: "-100%"}, {top: "0"}],
 		"flip": [{transform: "rotate3d(0, 1, 0, 90deg)"}, {hi: 0}, function (now, fx){
 			$(this).css("transform", "rotate3d(0, 1, 0, " + (1 - fx.pos) * 90 + "deg)");
+		}],
+		"scale": [{transform: "scale(0) translate(50%, 50%)", top: "-50%", left: "0%"}, {scale: 1}, function (now, fx){
+			$(this).css("transform", "scale(" + now + ")");
 		}]
 	};
  
