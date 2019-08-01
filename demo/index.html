@@ -2,26 +2,223 @@
 <html>
 <head>
 <title>PostifyLoading - JQuery Plugin</title>
-<link rel="stylesheet" type="text/css" href="../postify.css" />
 <script src="jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../postify.css" />
 <script src="../jquery.postify.js"></script>
 <style>
+	* {
+		box-sizing: border-box;
+	}
 	body, html {
 		padding: 0;
 		margin: 0;
 		width: 100%;
 		height: 100%;
-	}	
+	}
+	h1 {
+		margin:auto;
+		text-align: center;
+		padding: 10px 0;
+	}
+	.row {
+		margin: 10px 0;
+	}
+	.code {
+		border:#999 solid 1px;
+		background-color:#BBB;
+		font-family: 'Lucidia Console', monospace;
+		padding:5px;
+	}
+	.desc {
+		text-align: center;
+		background-color: #222;
+		color: #DDD;
+		padding: 2px;
+		width: 100%;
+	}
+	.inline {
+		display:inline-block;
+		padding: 1px;
+	}
+	.mainhead {
+		color: #DDD;
+	}
+	tbody tr td {
+		font-weight: 300;
+	}
 </style>
 <script>
 $(document).ready(function () {
-	$('div.postify').postify(undefined, {delay: 1000, adjustSize: "cover", duration: 500, animation: "scale"});
+	$('div.postify-scale').postify({delay: 1000, adjustSize: "cover", duration: 500, animation: "scale"});
+	$('div.postify-fade').postify({delay: 1000, adjustSize: "cover", duration: 500, animation: "fade"});
+	$('div.postify-slideLeft').postify({delay: 1000, adjustSize: "cover", duration: 500, animation: "slideLeft"});
+	$('div.postify-custom').postify({delay: 1000, adjustSize: "cover", duration: 500, animation: [{opacity: 0}, {opacity: 0.5}]});
+	$('div.postify-basic1').postify({adjustSize: "parent", duration: 500});
+	$('div.postify-basic2').postify({adjustSize: "auto", duration: 1000});
+	$('div.postify-basic3').postify({adjustSize: "childWidth", duration: 1000});
 });
 </script>
 </head>
-<body style="background-color: #333;">
-	<div style="width:400px; height: 300px; border: 1px solid #FFF;">
-		<div class="postify" data-postify="img/img-1.jpg"></div>
+<body class="bg-dark">
+	<div class="row" style="background-color:#FFF;">
+		<h1>postify - jQuery Plugin Demo</h1>
+	</div>
+	<div class="row">
+		<h1 class="col col-12 mainhead">Basic Options</h1>
+		<div class="col col-4">
+			<div style="width:100%; height:300px;">
+				<div class="postify postify-basic1" data-postify="img/img-1.jpg"></div>
+			</div>
+			<div class="desc">adjustSize: parent<br> duration: 500ms</div>
+			<div class="code">
+				$('div.postify-basic1').postify({adjustSize: "parent", duration: 500});
+			</div>
+		</div>
+		<div class="col col-4">
+			<div style="width:100%; height:300px;">
+				<div class="postify postify-basic2" data-postify="img/img-1.jpg"></div>
+			</div>
+			<div class="desc">adjustSize: auto<br> duration: 1000ms</div>
+			<div class="code">
+				$('div.postify-basic2').postify({adjustSize: "auto", duration: 1000});
+			</div>
+		</div>
+		<div class="col col-4">
+			<div style="width:100%; height:300px;">
+				<div class="postify postify-basic3" data-postify="img/img-1.jpg"></div>
+			</div>
+			<div class="desc">adjustSize: childWidth<br> duration: 1000ms</div>
+			<div class="code">
+				$('div.postify-basic3').postify({adjustSize: "childWidth", duration: 1000});
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<h1 class="col col-12 mainhead">Animations</h1>
+		<div class="col col-4">
+			<div style="width:100%; height:300px;">
+				<div class="postify postify-scale" data-postify="img/img-1.jpg"></div>
+			</div>
+			<div class="code">
+				$('div.postify').postify({delay: 1000, adjustSize: "cover", duration: 500, animation: "scale"});
+			</div>
+		</div>
+		<div class="col col-4">
+			<div style="width:100%; height:300px;">
+				<div class="postify postify-fade" data-postify="img/img-1.jpg"></div>
+			</div>
+			<div class="code">
+				$('div.postify').postify({delay: 1000, adjustSize: "cover", duration: 500, animation: "fade"});
+			</div>
+		</div>
+		<div class="col col-4">
+			<div style="width:100%; height:300px;">
+				<div class="postify postify-slideLeft" data-postify="img/img-1.jpg"></div>
+			</div>
+			<div class="code">
+				$('div.postify').postify({delay: 1000, adjustSize: "cover", duration: 500, animation: "slideLeft"});
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<h1 class="col col-12 mainhead">Custom Animations</h1>
+		<div class="col col-8 bg-light" style="padding:15px;">
+			When you override the <div class="code inline">'animation'</div> property you can define custom animation by providing an array containing at least two objects and an optional <div class="code inline">function step(now, fx)</div>. The first object describes the start and and the second contains the final state. Attention: you can't animate complex, non numeric css properties. If you want to animate e.g. the transform property you have to define the first object with the initial state and the second with optional end points. The step function sets the css for each frame manual.
+		</div>
+		<div class="col col-4">
+			<div style="width:100%; height:300px;">
+				<div class="postify postify-custom" data-postify="img/img-1.jpg"></div>
+			</div>
+			<div class="code">
+				$('div.postify-custom').postify(undefined, {delay: 1000, adjustSize: "cover", duration: 500, animation: [{opacity: 0}, {opacity: 0.5}]});
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<h1 class="col col-12 mainhead">Options</h1>
+		<div class="col col-12 bg-light">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Option</th>
+						<th>Description</th>
+						<th>Default</th>
+						<th>Values</th>
+					</tr>
+				</thead>
+				<tbody style="font-weight: 600!important;">
+					<tr>
+						<th>url</th>
+						<td>Overrides the url in the data-postify attribute</td>
+						<td>undefined</td>
+						<td>custom string</td>
+					</tr>
+					<tr>
+						<th>animation</th>
+						<td>Choose one of the predefined animations or declare a custom one</td>
+						<td>fade</td>
+						<td>
+							<ul>
+								<li>fade</li>
+								<li>slideUp</li>
+								<li>slideDown</li>
+								<li>slideLeft</li>
+								<li>slideRight</li>
+								<li>flip</li>
+								<li>scale</li>
+								<li>custom animation:<br>[{{..}, {..}, optional: function(now, fx)}]</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<th>duration</th>
+						<td>Defines the duration of all animations</td>
+						<td>Slow</td>
+						<td>Fast, slow, amount of ms</td>
+					</tr>
+					<tr>
+						<th>delay</th>
+						<td>The delay of the image loading in ms</td>
+						<td>0ms</td>
+						<td>amount of ms</td>
+					</tr>
+					<tr>
+						<th>priority</th>
+						<td>Loads pictures in a certain order</td>
+						<td>0</td>
+						<td>all numbers &gt;= 0</td>
+					</tr>
+					<tr>
+						<th>showLoading</th>
+						<td>Defines whether a loading animation should be displayed or not</td>
+						<td>true</td>
+						<td>true, false</td>
+					</tr>
+					<tr>
+						<th>loadingClass</th>
+						<td>The class of the surrounding loading animation</td>
+						<td>postify-loading</td>
+						<td>custom class name</td>
+					</tr>
+					<tr>
+						<th>loadingElements</th>
+						<td>When your loading animation needs more items they can be added here</td>
+						<td>&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;</td>
+						<td>custom html string</td>
+					</tr>
+					<tr>
+						<th>adjustSize</th>
+						<td>How should the postloaded image adjust the size itself or the size of the containing element. <b>parent: </b> adjust the size of the parent so it matches the size of the image. <b>cover</b>: Scale the image, that it fills the parent. <b>childHeight</b>: Force the child to adjust its height by parent. <b>childWidth</b>: Force the child to adjust its width by parent. <b>auto</b>: choose automaticly how to adjust the size of the image that it fits the parent.</td>
+						<td>parent</td>
+						<td>parent,  cover, childHeight, childWidth, auto</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
 </html>

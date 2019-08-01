@@ -1,6 +1,6 @@
 (function( $ ) {
  
-    $.fn.postify = function(url = undefined, options) {
+    $.fn.postify = function(options) {
 		
 	 
 		var settings = $.extend( {}, $.fn.postify.defaults, options );
@@ -21,9 +21,11 @@
 				"width": $(this).parent().css("width")
 			};
 			
+			var src = (settings.url === undefined) ? elem.data("postify") : settings.url;
+			
 			if(elem.data("postify")){
 				
-				var src = (url === undefined) ? elem.data("postify") : url;
+				
 				var newImg = $("<img>");
 				newImg.load(function () {
 					
@@ -83,7 +85,7 @@
 					}
 				});
 				
-				newImg.delay(settings.delay).attr("src", src);
+				newImg.delay((settings.priority * 10) + settings.delay).attr("src", src);
 				
 			}
 			else if(elem.data("postify-bg")){
@@ -107,10 +109,12 @@
     };
 	
 	$.fn.postify.defaults = {
+		"url": undefined,
 		"animation": "fade",
 		"easing": "ease",
 		"duration": "slow",
 		"delay": 0,
+		"priority": 0,
 		"showLoading": true,
 		"loadingClass": "postify-loading",
 		"loadingElements": "<div></div><div></div><div></div><div></div>",
