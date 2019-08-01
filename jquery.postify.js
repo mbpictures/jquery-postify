@@ -73,7 +73,7 @@
 					}
 					
 					else if(adjustNewSize === "parent"){
-						elem.parent().animate({height: newImg.css("height")}, settings.duration);
+						elem.parent().animate({height: newImg.css("height"), width: newImg.css("width")}, settings.duration);
 					}
 					else if(adjustNewSize === "childHeight"){
 						var width = (parseFloat(size.height) / parseFloat(newImg.css("height"))) * parseFloat(newImg.css("width"));
