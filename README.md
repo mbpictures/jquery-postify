@@ -10,6 +10,7 @@ $(document).ready(function() {
 ```
 
 ## options
+* url (```undefined```): url to override the ```data-postify``` tag
 * animation (```default: fade```): how should the images be shown up?
   * slideUp
   * slideDown

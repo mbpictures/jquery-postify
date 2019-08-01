@@ -1,7 +1,6 @@
 (function( $ ) {
  
     $.fn.postify = function(options) {
-		
 	 
 		var settings = $.extend( {}, $.fn.postify.defaults, options );
 		
