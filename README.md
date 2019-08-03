@@ -31,6 +31,16 @@ $(document).ready(function() {
   * auto: scale image to fit parent best so it won't get cut
   * childHeight: force image to scale by height, that it fits parent (width gets calculated automaticly)
   * childWidth: force image to scale by width, that it fits parent (height gets calculated automaticly)
+  
+## Tipps and tricks
+If you have some problems with scaling when using ```adjustSize: 'parent'``` try to surround it with an additional div container and assign height and width to that, especially when working with bootstrap:
+```HTML
+<div class="col col-4">
+	<div style="height: 400px; width: 100%;">
+		<div class="postify postify-test1" data-postify="img/img-1.jpg"></div>
+	</div>
+</div>
+```
 
 ## Contribute
 Feel free to add some new features, write issues or contact me in a way you prefer: [my website](http://marius-butz.de)

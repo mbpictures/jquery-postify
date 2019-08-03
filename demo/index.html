@@ -57,7 +57,9 @@ $(document).ready(function () {
 	$('div.postify-custom').postify({delay: 1000, adjustSize: "cover", duration: 500, animation: [{opacity: 0}, {opacity: 0.5}]});
 	$('div.postify-basic1').postify({adjustSize: "parent", duration: 500});
 	$('div.postify-basic2').postify({adjustSize: "auto", duration: 1000});
-	$('div.postify-basic3').postify({adjustSize: "childWidth", duration: 1000});
+	$('div.postify-basic3').postify({adjustSize: "cover", duration: 1000});
+	$('div.postify-test1').postify({adjustSize: "parent", delay: 1000});
+	$('div.postify-test2').postify({adjustSize: "cover", delay: 1000});
 });
 </script>
 </head>
@@ -89,9 +91,9 @@ $(document).ready(function () {
 			<div style="width:100%; height:300px;">
 				<div class="postify postify-basic3" data-postify="img/img-1.jpg"></div>
 			</div>
-			<div class="desc">adjustSize: childWidth<br> duration: 1000ms</div>
+			<div class="desc">adjustSize: cover<br> duration: 1000ms</div>
 			<div class="code">
-				$('div.postify-basic3').postify({adjustSize: "childWidth", duration: 1000});
+				$('div.postify-basic3').postify({adjustSize: "cover", duration: 1000});
 			</div>
 		</div>
 	</div>
@@ -218,6 +220,46 @@ $(document).ready(function () {
 					</tr>
 				</tbody>
 			</table>
+		</div>
+	</div>
+	<div class="row">
+		<h1 class="mainhead col col-12">Functional Tests</h1>
+		<div class="col col-4">
+			<div style="height: 400px; width: 100%;">
+				<div class="postify postify-test1" data-postify="img/img-1.jpg"></div>
+			</div>
+		</div>
+		<div class="col col-4">
+			<div style="height: 400px; width: 100%;">
+				<div class="postify postify-test1" data-postify="img/img-2.jpg"></div>
+			</div>
+		</div>
+		<div class="col col-4">
+			<div style="height: 600px; width: 100%;">
+				<div class="postify postify-test1" data-postify="img/img-2.jpg"></div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col col-3">
+			<div style="height: 300px; width: 100%;">
+				<div class="postify postify-test2" data-postify="img/img-1.jpg"></div>
+			</div>
+		</div>
+		<div class="col col-3">
+			<div style="height: 600px; width: 100%;">
+				<div class="postify postify-test2" data-postify="img/img-1.jpg"></div>
+			</div>
+		</div>
+		<div class="col col-3">
+			<div style="height: 300px; width: 100%;">
+				<div class="postify postify-test2" data-postify="img/img-2.jpg"></div>
+			</div>
+		</div>
+		<div class="col col-3">
+			<div style="height: 600px; width: 100%;">
+				<div class="postify postify-test2" data-postify="img/img-2.jpg"></div>
+			</div>
 		</div>
 	</div>
 </body>

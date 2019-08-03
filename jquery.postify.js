@@ -13,6 +13,7 @@
 			}
 		});
 	 
+		//load images
 		return this.each(function() {
 			var elem = $(this);
 			var size = {
@@ -51,23 +52,33 @@
 					
 					
 					if(settings.adjustSize === "cover") {
-						if(parseFloat(newImg.css("height")) > parseFloat(newImg.css("width"))){
-						   newImg.animate({width: "100%"}, settings.duration);
-						}
-						else{
-						   newImg.animate({height: "100%"}, settings.duration);
-						}
-						
-						var hW = (parseFloat(newImg.css("width")) - parseFloat(size.width)) / 2;
-						var hH = (parseFloat(newImg.css("height")) - parseFloat(size.height)) / 2;
-						if(parseFloat(newImg.css("width")) > parseFloat(newImg.css("height"))){
-							
-							console.log(hH);
-							newImg.animate({top: 0, left: '-'+hW+'px'}, settings.duration);
-						}
-						else {
-							newImg.animate({left: 0, top: '-'+hH+'px'}, settings.duration);
-						}
+						  newImg.css({'width': '', 'height': '', 'margin-left': '', 'margin-top': ''});
+
+						  var parentWidth = parseFloat(size.width);
+						  var parentHeight = parseFloat(size.height);
+
+						  var imageWidth = newImg.width();
+						  var imageHeight = newImg.height();
+
+						  var diff = imageWidth / parentWidth;
+
+						  if ((imageHeight / diff) < parentHeight) {
+							newImg.css({'width': 'auto', 'height': parentHeight});
+
+							imageWidth = imageWidth / (imageHeight / parentHeight);
+							imageHeight = parentHeight;
+						  }
+						  else {
+							newImg.css({'height': 'auto', 'width': parentWidth});
+
+							imageWidth = parentWidth;
+							imageHeight = imageHeight / diff;
+						  }
+
+						  var leftOffset = (imageWidth - parentWidth) / -2;
+						  var topOffset = (imageHeight - parentHeight) / -2;
+
+						  newImg.css({'margin-left': leftOffset, 'margin-top': topOffset});
 						
 					}
 					
