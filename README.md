@@ -1,4 +1,6 @@
 # jquery-postify
+[![npm](https://img.shields.io/npm/v/jquery-postify?color=green)](https://www.npmjs.com/package/jquery-postify)
+
 Postify is a jQuery plugin that allows you to load images after the main part of the page has been loaded. It works by some kind of AJAX calls and has several possibilties to customize. [demo](demo/index.html)
 
 ## usage
