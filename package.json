@@ -1,0 +1,28 @@
+{
+  "name": "jquery-postify",
+  "version": "0.9.0",
+  "description": "A jquery plugin to load images after the main part of the page has been loaded",
+  "main": "jquery.postify.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbpictures/jquery-postify.git"
+  },
+  "keywords": [
+    "jquery",
+    "postify",
+    "images",
+    "image",
+    "load",
+    "postload",
+    "ajax"
+  ],
+  "author": "Marius Butz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mbpictures/jquery-postify/issues"
+  },
+  "homepage": "https://github.com/mbpictures/jquery-postify#readme"
+}

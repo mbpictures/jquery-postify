@@ -23,7 +23,7 @@
 			
 			var src = (settings.url === undefined) ? elem.data("postify") : settings.url;
 			
-			if(elem.data("postify")){
+			if(elem.data("postify") || (settings.url !== undefined)){
 				
 				
 				var newImg = $("<img>");
