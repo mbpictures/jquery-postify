@@ -1,6 +1,6 @@
 {
   "name": "jquery-postify",
-  "version": "0.9.0",
+  "version": "0.9.2",
   "description": "A jquery plugin to load images after the main part of the page has been loaded",
   "main": "jquery.postify.js",
   "scripts": {
