@@ -100,7 +100,7 @@
 			else if(elem.data("postify-bg")){
 				var newImg = $("<img>");
 				newImg.load(function () {
-					$(this).css("background-image", "url(" + $(this).data("postify-bg") + ")");
+					elem.css("background-image", "url(" + $(this).data("postify-bg") + ")");
 					
 					elem.find("." + settings.loadingClass).each(function(){
 						$(this).remove();
