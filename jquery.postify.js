@@ -27,11 +27,10 @@
 				
 				
 				var newImg = $("<img>");
-				newImg.load(function () {
+				newImg.on("load", function () {
 					
 					elem.find('.' + settings.loadingClass).each(function(){
 						$(this).fadeOut(settings.duration);
-						
 					});
 					
 					var animOpts = animation[2] !== undefined ? {duration: settings.duration, step: animation[2]} : settings.duration;
@@ -95,7 +94,7 @@
 					}
 				});
 				
-				newImg.delay((settings.priority * 10) + settings.delay).attr("src", src);
+				newImg.delay((settings.priority * 10) + settings.delay).queue(function(next) { $(this).attr('src',src); next(); });
 				
 			}
 			else if(elem.data("postify-bg")){
