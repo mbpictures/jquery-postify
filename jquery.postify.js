@@ -46,7 +46,7 @@
 					var adjustNewSize = settings.adjustSize;
 
 					if (settings.adjustSize === "auto") {
-						adjustNewSize = (parseFloat(newImg.css("height")) > parseFloat(newImg.css("width"))) ? ((parseFloat(size.height) > parseFloat(size.width)) ? "childWidth" : "childHeight") : ((parseFloat(size.height) > parseFloat(size.width)) ? "childWidth" : "childHeight");
+						adjustNewSize = parseFloat(size.height) > parseFloat(size.width) ? "childWidth" : "childHeight";
 					}
 
 
