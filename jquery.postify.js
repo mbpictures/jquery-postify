@@ -22,11 +22,11 @@
 			};
 
 			var src = (settings.url === undefined) ? elem.data("postify") : settings.url;
-
+			var newImg;
 			if (elem.data("postify") || (settings.url !== undefined)) {
 
 
-				var newImg = $("<img>");
+				newImg = $("<img>");
 				newImg.on("load", function () {
 
 					elem.find('.' + settings.loadingClass).each(function () {
@@ -98,7 +98,7 @@
 
 			}
 			else if (elem.data("postify-bg")) {
-				var newImg = $("<img>");
+				newImg = $("<img>");
 				newImg.load(function () {
 					elem.css("background-image", "url(" + $(this).data("postify-bg") + ")");
 
